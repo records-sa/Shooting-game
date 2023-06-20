@@ -39,8 +39,28 @@ function setupKeyboardListener(){
     keysDown[event.key] = true;
   })
   document.addEventListener("keyup", function(){
-    delete keysDown[event.key];
+    delete keysDown[event.key];    // 방향키를 떼면 이벤트 삭제
   })
+}
+
+// 방향키를 누르면 우주선의 x, y 좌표가 바뀌는 함수
+// 우주선이 오른쪽으로 간다: x 좌표의 값이 증가
+// 우주선이 왼쪽으로 간다: x 좌표의 값이 감소
+function update(){
+  if('ArrowRight' in keysDown) {
+    spaceshipX += 5;    // 우주선의 움직임 속도
+  }    // right
+  if('ArrowLeft' in keysDown) {
+    spaceshipX -= 5;
+  }    // left
+
+  // 우주선이 게임 밖으로 나가는 것 방지하기
+  if(spaceshipX <= 0) {
+    spaceshipX = 0;
+  }
+  if(spaceshipX >= 336) {    // spaceshipX >= canvas.width - 64
+    spaceshipX = 336;
+  }
 }
 
 // 이미지를 보여주는 함수 만들기
@@ -51,7 +71,8 @@ function render(){
 
 // 배경화면 이미지를 계속 호출해서 화면에 보이도록 하는 함수 만들고 호출하기
 function main(){
-  render();
+  update();    // 좌표값을 업데이트하고
+  render();    // 그려줌
   requestAnimationFrame(main);
 }
 
@@ -59,9 +80,9 @@ loadImage();
 setupKeyboardListener();
 main();
 
-// 방향키를 누르면
-
-// 우주선의 x, y 좌표가 바뀌고
+// 방향키를 누르면 우주선의 x, y 좌표가 바뀜
+// 우주선이 오른쪽으로 간다: x 좌표의 값이 증가
+// 우주선이 왼쪽으로 간다: x 좌표의 값이 감소
 
 // 다시 render 그려줌
 
