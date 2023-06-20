@@ -80,9 +80,5 @@ loadImage();
 setupKeyboardListener();
 main();
 
-// 방향키를 누르면 우주선의 x, y 좌표가 바뀜
-// 우주선이 오른쪽으로 간다: x 좌표의 값이 증가
-// 우주선이 왼쪽으로 간다: x 좌표의 값이 감소
 
-// 다시 render 그려줌
 
