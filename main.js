@@ -34,7 +34,7 @@ function Bullet() {
 
   this.checkHit = function () {
     for (let i = 0; i < enemyList.length; i++) {
-      if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 40) {
+      if (this.y <= enemyList[i].y && this.x >= enemyList[i].x - 15 && this.x <= enemyList[i].x + 15) {
         score++;
         this.alive = false;
         enemyList.splice(i, 1);
